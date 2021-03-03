@@ -6,6 +6,7 @@ let direction = 1
 let invadersId = null
 let goingRight = true
 let aliensRemoved = []
+let results = 0
 
 for (let i = 0; i < 225; i++) {
 const square = document.createElement('div')
@@ -89,8 +90,12 @@ function moveInvaders(){
         clearInterval(invadersId)
         }
     }
+    if(aliensRemoved.length === alienInvaders.length){
+        resultsDisplay.innerHTML = "YOU WIN!!"
+        clearInterval(invadersId)
+    }
 }
-invadersId = setInterval(moveInvaders,100)
+invadersId = setInterval(moveInvaders,300)
 
 function shoot(e){
     let laserId
@@ -110,6 +115,8 @@ function shoot(e){
 
             const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
             aliensRemoved.push(alienRemoved)
+            results++
+            resultsDisplay.innerHTML = results
             console.log(aliensRemoved)
         }
 
